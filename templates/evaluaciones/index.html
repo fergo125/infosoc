@@ -1,6 +1,39 @@
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h1>Evaluaciones</h1>
+<div class="col-md-6 col-md-offset-3">
+  <h1>Evaluaciones</h1>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+  <div class="btn-group" uib-dropdown is-open="status.isopen">
+    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+      Practica<span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">
+      <li ng-repeat="practica in practicas">
+        <a ng-click="getPreguntasPractica(practica)" >{{practica.nombre}}</a>
+      </li>
+    </ul>
   </div>
+
+  <div class="panel panel-default" ng-repeat="pregunta in preguntasPractica">
+    <div class="panel-heading">{{pregunta.pregunta}}</div>
+    <div class="panel-body">
+      <div class="" ng-hide="!(pregunta.tipo == 'marque-x')" class="hidden">
+        <div class="radio" ng-repeat="opcion in pregunta.opciones">
+          <label><input type="radio" name="optradio" >{{opcion.nombre}}</label>
+        </div>
+      </ul>
+    </div>
+    <div class="" ng-hide="!(pregunta.tipo == 'desarrollo')" class="hidden">
+      <div class="form-group">
+        <label for="comment">Respuesta:</label>
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+      </div>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
 </div>

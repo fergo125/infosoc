@@ -39,7 +39,7 @@
           <h4>Opciones:</h4>
           <div class="input-group" ng-repeat="opcion in newQuestion.opciones">
             <span class="input-group-addon">
-              <input  type="radio"  name="radioOpcion" aria-label="...">
+              <input  type="radio" ng-model="opcion.correcta" value="true"name="radioOpcion" aria-label="...">
             </span>
             <input ng-model="opcion.nombre" type="text" class="form-control" aria-label="...">
 
@@ -59,6 +59,7 @@
           <ul >
             <li ng-repeat="opcion in pregunta.opciones">
               {{opcion.nombre}}
+              <span class="label label-success" ng-hide="!opcion.correcta" class="hidden">Correcta</span>
             </li>
           </ul>
         </div>

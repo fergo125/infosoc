@@ -1,6 +1,5 @@
-angular.module("infosoc",['ngRoute','ui.bootstrap']);
-angular.module("infosoc").controller('PreguntasController',['$scope',function($scope){
-  $scope.preguntas = preguntas;
+angular.module("infosoc").controller('PreguntasController',['$scope','PreguntaService',function($scope,PreguntaService){
+  $scope.preguntas = PreguntaService.getPreguntas();
   $scope.creating = true;
   $scope.isCreating = function(){
     return $scope.creating;
@@ -8,33 +7,69 @@ angular.module("infosoc").controller('PreguntasController',['$scope',function($s
   $scope.toggleCreating = function(){
     creating = !creating;
   }
-  $scope.newQuestion = {id:'',
-                        materia:'Materia',
-                        pregunta:'',
-                        tipo:'desarrollo',
-                        opciones : [{nombre:''},{nombre:''},{nombre:''}]
-                      };
+  $scope.newQuestion = PreguntaService.newEmptyPregunta();
   $scope.agregarPregunta = function(){
-    $scope.newQuestion.id = $scope.preguntas[$scope.preguntas.length-1].id + 1;
-    $scope.preguntas.push($scope.newQuestion);
-    $scope.newQuestion = {id:'',
-                          materia:'Materia',
-                          pregunta:'',
-                          tipo:'desarrollo',
-                          opciones : [{nombre:''},{nombre:''},{nombre:''}]
-                        };
+    PreguntaService.addPregunta($scope.newQuestion);
+    $scope.newQuestion = PreguntaService.newEmptyPregunta();
+    preguntas =PreguntaService.getPreguntas();
     creating=false;
   }
 
 }]);
-angular.module("infosoc").controller('EvaluacionesController',['$scope',function($scope){
+angular.module("infosoc").controller('PracticasController',['$scope','PreguntaService','PracticaService',function($scope,PreguntaService,PracticaService){
+  $scope.practicas = PracticaService.getPracticas();
+  $scope.practicaSelected = PracticaService.getNewPractica();
+  $scope.preguntasPractica = [];
+  $scope.preguntasAll="";
+  $scope.creating=false;
+  $scope.getPreguntasPractica = function(practicaN){
+    $scope.practicaSelected = practicaN;
+    if($scope.practicaSelected != ""){
+      preguntasId = $scope.practicaSelected.preguntas;
+      $scope.preguntasPractica = [];
+      $scope.preguntasAll = PreguntaService.getPreguntas().slice();
+      for (var i = 0; i < preguntasId.length; i++) {
+        for (var j = 0; j < $scope.preguntasAll.length; j++) {
+          if (preguntasId[i].id==$scope.preguntasAll[j].id) {
+            $scope.preguntasPractica.push($scope.preguntasAll[j]);
+            $scope.preguntasAll.splice(j,1);
+          }
+        }
+      }
+    }
+  }
+  $scope.addPregunta = function(pregunta){
+    PracticaService.addPreguntaToPractica($scope.practicaSelected.id,pregunta);
+    $scope.getPreguntasPractica($scope.practicaSelected);
 
+  }
+  $scope.addPractica = function(){
+    PracticaService.addPractica($scope.practicaSelected);
+    creating=false;
+    $scope.practicaSelected = PracticaService.getNewPractica();
+  }
 }]);
-angular.module("infosoc").controller('PracticasController',['$scope',function($scope){
+angular.module("infosoc").controller('EvaluacionesController',['$scope','PreguntaService','PracticaService',function($scope,PreguntaService,PracticaService){
+  $scope.practicas = PracticaService.getPracticas();
+  $scope.preguntasPractica = [];
+  $scope.practicaSelected = "";
 
+
+
+  $scope.getPreguntasPractica = function(practicaN){
+    $scope.practicaSelected = practicaN;
+    if($scope.practicaSelected != ""){
+      preguntasId = $scope.practicaSelected.preguntas;
+      $scope.preguntasPractica = [];
+      $scope.preguntasAll = PreguntaService.getPreguntas().slice();
+      for (var i = 0; i < preguntasId.length; i++) {
+        for (var j = 0; j < $scope.preguntasAll.length; j++) {
+          if (preguntasId[i].id==$scope.preguntasAll[j].id) {
+            $scope.preguntasPractica.push($scope.preguntasAll[j]);
+            $scope.preguntasAll.splice(j,1);
+          }
+        }
+      }
+    }
+  }
 }]);
-
-
-var preguntas = [{id:1,materia:'Estudios Sociales',pregunta:'Quien es este pokemon?', tipo:'marque-x',opciones:[{nombre:'Pikachu'},{nombre:'Lugia'},{nombre:'Rayquaza'}]},
-                  {id:2,materia:'Estudios Sociales',pregunta:'Quien es este pokemon?', tipo:'marque-x',opciones:[{nombre:'Pikachu'},{nombre:'Lugia'},{nombre:'Rayquaza'}]},
-                {id:3,materia:'Ciencias',pregunta:'Por que los pinguinos no vuelan?', tipo:'desarrollo'}];
