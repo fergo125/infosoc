@@ -15,7 +15,7 @@
           <span class="input-group-addon" id="basic-addon1">Pregunta:</span>
           <input type="text" class="form-control" ng-model=newQuestion.pregunta aria-describedby="basic-addon1">
         </div>
-        <div class="btn-group" uib-dropdown is-open="status.isopen">
+        <div class="btn-group" uib-dropdown is-open="status.isopen" style="margin:0 auto; margin-bottom: 7px;">
           <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
             {{newQuestion.materia}} <span class="caret"></span>
           </button>
@@ -28,13 +28,14 @@
         </div>
 
         <div class="input-group">
-          <label >
+          <label>
             <input type="radio" id="q128" name="radiogroup" value="marque-x" ng-model="newQuestion.tipo" /> Marque con equis
           </label>
           <label >
             <input type="radio" id="q129" name="radiogroup"  ng-model="newQuestion.tipo" value="desarrollo" /> Desarrollo
           </label>
         </div>
+          
         <div class="" ng-hide="!(newQuestion.tipo == 'marque-x')" class="hidden">
           <h4>Opciones:</h4>
           <div class="input-group" ng-repeat="opcion in newQuestion.opciones">
@@ -46,7 +47,7 @@
           </div>
 
         </div>
-        <button type="button" class="btn btn-info" ng-click="agregarPregunta()">Agregar Pregunta</button>
+        <button type="button" class="btn btn-info" ng-click="agregarPregunta()" style="display: block; margin: 0 auto; margin-top:5px;">Agregar Pregunta</button>
       </div>
     </div>
     <div class="panel panel-default" ng-repeat="pregunta in preguntas">

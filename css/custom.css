@@ -31,3 +31,7 @@ body{
 .hidden-element{
   visibility:hidden;
 }
+
+div.input-group{
+    margin-bottom: 10px;
+}
