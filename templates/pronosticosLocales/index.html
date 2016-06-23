@@ -1,0 +1,8 @@
+<div ng-controller="PronosticosRegionalesController as pronosticos">
+    <div class="regiones-item row" ng-repeat="region in regiones">
+        <div class="two columns">
+            <img ng-src="{{region.image}}" class ="regiones-icon-list"></img>
+        </div>
+        <div class="ten columns regiones-text"><strong>{{region.name}}</strong></div>
+    </div>
+</div>

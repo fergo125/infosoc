@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="infosoc">
+<head>
+  <meta charset="utf-8" />
+  <script src="lib/angular/angular.js"> </script>
+  <script src="js/ui-bootstrap.min.js"></script>
+  <script src="lib/angular-route.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/routes.js"></script>
+
+  <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/> -->
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/custom.css"/>
+
+</head>
+<body >
+  <nav class="navbar navbar-default" role="navigation">
+    <!-- Brand and toggle get grouped for better mobile display -->
+
+    <div class="navbar-inner">
+
+      <ul class="nav navbar-nav">
+        <li class="nav-item">
+          <a class="brand" href="#">InfosocApp</a>
+        </li>
+        <li class="nav-item">
+          <a href="#/preguntas" class="brand">Preguntas</a>
+        </li>
+        <li class="nav-item">
+          <a href="#/evaluaciones" class="brand">Evaluaciones</a>
+        </li>
+        <li class="nav-item">
+          <a href="#/practicas" class="brand">Practicas</a>
+        </li>
+      </ul>
+
+    </div>
+</nav>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+<div class="container">
+
+  <div ng-view></div>
+</div>
+
+  </body>
+  </html>
