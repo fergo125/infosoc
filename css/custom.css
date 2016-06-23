@@ -35,3 +35,7 @@ body{
 div.input-group{
     margin-bottom: 10px;
 }
+
+h6{
+  font-size: 1.1em;
+}

@@ -37,7 +37,7 @@
         </div>
           
         <div class="" ng-hide="!(newQuestion.tipo == 'marque-x')" class="hidden">
-          <h4>Opciones:</h4>
+          <h5>Opciones:</h5>
           <div class="input-group" ng-repeat="opcion in newQuestion.opciones">
             <span class="input-group-addon">
               <input  type="radio"  name="radioOpcion" aria-label="...">
@@ -56,8 +56,8 @@
         <span class="label label-primary">Tipo:</span> {{pregunta.tipo}}
         <span class="label label-primary">Materia:</span> {{pregunta.materia}}
         <div class="" ng-hide="!(pregunta.tipo == 'marque-x')" class="hidden">
-          <h4>Opciones:</h4>
-          <ul >
+          <h6>Opciones</h6>
+          <ul>
             <li ng-repeat="opcion in pregunta.opciones">
               {{opcion.nombre}}
             </li>
